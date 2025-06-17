@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="vmpayment" method="upgrade">
+    <name>plg_vmpayment_paysecure</name>
+    <author>Paysecure</author>
+    <creationDate>2025-06-05</creationDate>
+    <copyright>Copyright (C) 2025 Paysecure. All rights reserved.</copyright>
+    <license>GNU GPL v2 or later</license>
+    <version>1.0.1</version>
+    <description>PLG_VMPAYMENT_PAYSECURE_DESCRIPTION</description>
+    
+    <files>
+        <filename plugin="paysecure">paysecure.php</filename>
+        <folder>tmpl</folder>
+        <folder>language</folder>
+        <folder>media</folder>
+    </files>
+    
+    <media destination="plg_vmpayment_paysecure" folder="media">
+        <folder>images</folder>
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+    
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="merchant_id"
+                    type="text"
+                    label="PLG_VMPAYMENT_PAYSECURE_MERCHANT_ID"
+                    description="PLG_VMPAYMENT_PAYSECURE_MERCHANT_ID_DESC"
+                    size="40"
+                    required="true"
+                    filter="string"
+                    class="inputbox"
+                />
+                <field
+                    name="api_key"
+                    type="password"
+                    label="PLG_VMPAYMENT_PAYSECURE_API_KEY"
+                    description="PLG_VMPAYMENT_PAYSECURE_API_KEY_DESC"
+                    size="40"
+                    required="true"
+                    filter="string"
+                    class="inputbox"
+                />
+                <field
+                    name="sandbox_mode"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_SANDBOX_MODE"
+                    description="PLG_VMPAYMENT_PAYSECURE_SANDBOX_MODE_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="api_base_url"
+                    type="text"
+                    default="https://api.paysecure.net/api/v1"
+                    label="PLG_VMPAYMENT_PAYSECURE_API_URL"
+                    description="PLG_VMPAYMENT_PAYSECURE_API_URL_DESC"
+                    size="60"
+                    filter="url"
+                    class="inputbox"
+                />
+                <field
+                    name="payment_logo"
+                    type="media"
+                    label="PLG_VMPAYMENT_PAYSECURE_LOGO"
+                    description="PLG_VMPAYMENT_PAYSECURE_LOGO_DESC"
+                    directory="plg_vmpayment_paysecure"
+                    preview="tooltip"
+                />
+                <field
+                    name="accepted_currencies"
+                    type="text"
+                    default="USD,EUR,GBP"
+                    label="PLG_VMPAYMENT_PAYSECURE_ACCEPTED_CURRENCIES"
+                    description="PLG_VMPAYMENT_PAYSECURE_ACCEPTED_CURRENCIES_DESC"
+                    size="60"
+                    class="inputbox"
+                />
+            </fieldset>
+            
+            <fieldset name="payment_methods" label="PLG_VMPAYMENT_PAYSECURE_PAYMENT_METHODS">
+                <field
+                    name="enable_creditcard"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_ENABLE_CREDITCARD"
+                    description="PLG_VMPAYMENT_PAYSECURE_ENABLE_CREDITCARD_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="enable_banktransfer"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_ENABLE_BANKTRANSFER"
+                    description="PLG_VMPAYMENT_PAYSECURE_ENABLE_BANKTRANSFER_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="enable_ewallet"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_ENABLE_EWALLET"
+                    description="PLG_VMPAYMENT_PAYSECURE_ENABLE_EWALLET_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="enable_mobilemoney"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_ENABLE_MOBILEMONEY"
+                    description="PLG_VMPAYMENT_PAYSECURE_ENABLE_MOBILEMONEY_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="advanced" label="PLG_VMPAYMENT_PAYSECURE_ADVANCED_SETTINGS">
+                <field
+                    name="log_enabled"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_LOG_ENABLED"
+                    description="PLG_VMPAYMENT_PAYSECURE_LOG_ENABLED_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="test_mode_amounts"
+                    type="text"
+                    label="PLG_VMPAYMENT_PAYSECURE_TEST_AMOUNTS"
+                    description="PLG_VMPAYMENT_PAYSECURE_TEST_AMOUNTS_DESC"
+                    default="0.01=error,0.02=pending"
+                    size="60"
+                    class="inputbox"
+                />
+                <field
+                    name="ipn_verification"
+                    type="radio"
+                    label="PLG_VMPAYMENT_PAYSECURE_IPN_VERIFICATION"
+                    description="PLG_VMPAYMENT_PAYSECURE_IPN_VERIFICATION_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
